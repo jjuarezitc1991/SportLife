@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+      
+      <h:head>
+      	<title>#{messages['application.title']}</title>
+      	<h:outputStylesheet name="splash_screen.css" library="css"/>
+      </h:head>
+      
+      <h:body>
+      	<div id="content">
+      	
+      		<!-- LANGUAGE PREFERENCES -->
+      		<h:form>
+				<h:panelGrid width="100%" columns="2" columnClasses="headerTitleColumn,headerLocaleColumn">
+					<ui:fragment>
+						<h:commandLink action="#{sessionPreferences.changeLocale('en')}">
+							<h:graphicImage value="/img/flags/en.gif" />
+						</h:commandLink>
+						<h:commandLink action="#{sessionPreferences.changeLocale('es')}">
+							<h:graphicImage value="/img/flags/es.gif" />
+						</h:commandLink>
+					</ui:fragment>
+				</h:panelGrid>
+			</h:form>
+      		
+      		<!-- WELCOME TEXT -->
+      		<h2 class="white_text">
+      			<h:outputText value="#{messages['splashScreen.welcome']}" />
+      		</h2>
+      		<br/>
+      		
+      		<!-- CYCLIC ANIMATION -->
+      		<p class = "white_text"><h:outputText value="#{messages['splashScreen.cyclicAnimation']}" /></p>
+      		<div class="x a"></div>
+      		<div class="x b"></div>
+			<div class="x c"></div>
+      		<br/>
+      		
+      		<!-- ENTER LINK -->
+      		<h:link value="#{messages['splashScreen.enterLinkText']}" outcome="pages_web-site/home"/>
+      		
+      	</div>
+      </h:body>
+</html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:hf="http://xmlns.jcp.org/jsf/composite/tags"
+      xmlns:hftl="http://hftl.org"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+      
+      <h:body>
+      	<ui:composition template="/templates/layout.xhtml">
+      		<ui:define name="content">
+      		
+      			<!-- TITLE SECTION -->
+      			<h1><h:outputText value="#{messages['checkOut.title']}"/></h1>
+      			
+      			<h3><h:outputText value="#{messages['shoppingCart.totalCost']}"/>: <h:outputText value="#{cartBean.total}" /></h3>
+      			
+				<h:form>
+					<h:selectOneRadio value="#{checkOutBean.paymentType}" onclick="this.form.submit()">
+				        <f:selectItem itemLabel="#{messages['checkOut.creditCard']}" itemValue="creditCard" />
+				        <f:selectItem itemLabel="#{messages['checkOut.bankDeposit']}" itemValue="bankDeposit"/>
+				    </h:selectOneRadio>
+				    
+				    <h:panelGroup rendered="#{not empty checkOutBean.paymentType}">
+				    		<h:outputLabel for="address"><h:outputText value="#{messages['registry.address']}"/>:</h:outputLabel> 
+						<h:inputText value="#{checkOutBean.deliveryAddress}"></h:inputText>
+						<br/>
+						
+						<h:outputLabel for="deliveryService"><h:outputText value="#{messages['checkOut.deliveryService']}"/>:</h:outputLabel>
+						<h:selectOneMenu value="#{checkOutBean.deliveryService}">
+						   	<f:selectItem itemValue="DHL" itemLabel="DHL" />
+						   	<f:selectItem itemValue="FedEx" itemLabel="FedEx" />
+						</h:selectOneMenu>
+						<br/>
+				    </h:panelGroup>
+				    
+				    <h:panelGroup rendered="#{checkOutBean.paymentType == 'creditCard'}">
+				    		<h:outputLabel><h:outputText value="#{messages['checkOut.creditCarNumber']}"/>:</h:outputLabel>
+	 					<h:inputText value="#{checkOutBean.creditCardNumber}"></h:inputText>
+	 					<br/>
+	 					
+	 					<h:outputLabel>NIP:</h:outputLabel>
+	 					<h:inputText value="#{checkOutBean.nip}"></h:inputText>
+	 					<br/>
+	 					
+				    </h:panelGroup>
+				    
+				    <h:panelGroup rendered="#{checkOutBean.paymentType == 'bankDeposit'}">
+				    		<h:outputText value="#{messages['shoppingCart.waitingForBankDeposit']}" />
+				    		<br/>
+				    </h:panelGroup>
+				    
+					<h:commandButton action="#{checkOutBean.checkOut}" value="#{messages['shoppingCart.checkOut']}" rendered="#{not empty checkOutBean.paymentType}"/>
+				</h:form>
+			
+      		</ui:define>
+      	</ui:composition>
+      </h:body>
+</html>

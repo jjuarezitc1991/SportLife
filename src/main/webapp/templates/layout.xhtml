@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+      
+      <h:head>
+      	<title>#{messages['application.title']}</title>
+      	<h:outputStylesheet name="style.css" library="css"/>
+      </h:head>
+      
+      <h:body>
+	      <div id="page">
+	      
+	      	<!-- HEADER -->
+	      	<div id="header">
+	      	
+	      		<!-- LANGUAGE SELECTION -->
+	      		<h:form>
+					<ui:fragment>
+						<h:commandLink action="#{sessionPreferences.changeLocale('en')}">
+							<h:graphicImage value="/img/flags/en.gif" />
+						</h:commandLink>
+						<h:commandLink action="#{sessionPreferences.changeLocale('es')}">
+							<h:graphicImage value="/img/flags/es.gif" />
+						</h:commandLink>
+					</ui:fragment>
+				</h:form>
+				
+				<!-- LOGO -->
+	      		<div id="logo">
+               		<div id="logo_text">
+                  		<h1><a href="index.html">Sport<span class="logo_colour">Life</span></a></h1>
+                  		<h2>
+      						<h:outputText value="#{messages['header.categories']}" />
+      					</h2>
+               		</div>
+            		</div>
+            
+           		<!-- TOP MENU -->
+            		<nav id="menubar">
+               		<ul id="menu">
+                  		<li class="selected"><a href="home.jsf">Home</a></li>
+                  		<li>
+                  			<h:link value="#{messages['menu.borregos']}" outcome="borregos.xhtml" />
+                  		</li>
+                  		<li>
+                  			<h:link value="#{messages['menu.buhos']}" outcome="buhos.xhtml" />
+                  		</li>
+                  		<li>
+                  			<h:link value="#{messages['menu.signUp']}" outcome="signUp.xhtml" rendered="#{not loginBean.isLoggedIn()}"/>
+                  		</li>
+                  		
+                  		<li>
+                  			<h:link value="#{messages['menu.logIn']}" outcome="loginShop.xhtml" rendered="#{not loginBean.isLoggedIn()}"/>
+                  		</li>
+                  		
+                  		<li>
+                  			<h:link value="#{messages['shoppingCart.title']} (#{cartBean.totalArticles})" outcome="shoppingCart" rendered="#{loginBean.isLoggedIn()}"/>
+                  		</li>
+                  		
+                  		<li>
+                  			<h:link value="Logout" outcome="logout" rendered="#{loginBean.isLoggedIn()}"/>
+                  		</li>
+                  		
+                  		
+               		</ul>
+            		</nav>
+	      	</div>
+	      	<!-- /HEADER -->
+
+
+		<!-- CONTENT -->
+		<section id="site_content">
+			
+			<!-- MENU BAR --> 
+			<section class="sidebar">
+				<ui:insert name="sidebar">
+			               <h3>
+			               	<h:outputText value="#{messages['menu.categoriesTitle']}" />
+			               </h3>
+			               <ul>
+			                  <h:form>
+							    <h:commandLink action="#{searchBean.searchBySport('Futbol')}" value = "Futbol" />
+							  </h:form>
+			                  <h:form>
+							    <h:commandLink action="#{searchBean.searchBySport('Soccer')}" value = "Soccer" />
+							  </h:form>
+			                  <h:form>
+							    <h:commandLink action="#{searchBean.searchBySport('Rugby')}" value = "Rugby" />
+							  </h:form>
+			               </ul>
+				</ui:insert>
+            </section>
+            
+            <!-- CONTENT --> 
+            <section id="content">
+            		<ui:insert name="content">
+            			<p>Default content</p>
+            		</ui:insert>
+            </section>
+			
+
+		</section>
+
+		<!-- FOOTER -->
+	      	<footer id="footer">
+	      		<ui:insert name="footer">
+	      			<p>Footer</p>
+	      		</ui:insert>
+	      	</footer>
+	      </div>
+      	
+      </h:body>
+</html>

@@ -1,0 +1,14 @@
+label {
+	width:150px;
+    float:left;
+}
+
+.headerTitleColumn {
+    width: 50%;
+    text-align: left;
+}
+
+.headerLocaleColumn {
+    width: 50%;
+    text-align: right;
+}

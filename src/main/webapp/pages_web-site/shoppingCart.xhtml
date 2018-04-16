@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+      
+      <h:body>
+      	<ui:composition template="/templates/layout.xhtml">
+      		<ui:define name="content">
+      		
+      			<!-- TITLE SECTION -->
+      			<h1><h:outputText value="#{messages['shoppingCart.title']}" /></h1>
+      			
+      			<h3><h:outputText value="#{messages['shipping.minimumNote']}" rendered="#{cartBean.total lt 1000}" /></h3>
+      			
+      			<!-- CLOTHING SECTION -->
+      			<h2><h:outputText value="Clothing" /></h2>
+      			<h:form id="clothingForm">
+	      			<h:dataTable value="#{cartBean.clothingList}" var="clothing">
+						<h:column>
+							<f:facet name="header"><h:outputText value="#{messages['tableHeader.image']}" /></f:facet>
+								<h:graphicImage value="/img/jerseys/#{clothing.image}" width="180" />
+						</h:column>
+						<h:column>
+							<f:facet name="header"><h:outputText value="#{messages['tableHeader.name']}" /></f:facet>
+								#{clothing.name}
+						</h:column>
+						<h:column>
+							<f:facet name="header"><h:outputText value="#{messages['tableHeader.color']}" /></f:facet>
+								#{clothing.color}
+							</h:column>
+						<h:column>
+							<f:facet name="header"><h:outputText value="#{messages['tableHeader.size']}" /></f:facet>
+								#{clothing.size}
+						</h:column>
+						<h:column>
+							<f:facet name="header"><h:outputText value="#{messages['tableHeader.stockInCart']}" /></f:facet>
+								#{clothing.stock}
+						</h:column>
+						<h:column>
+							<f:facet name="header"><h:outputText value="#{messages['shoppingCart.removeItem']}" /></f:facet>
+								<h:commandButton action="#{cartBean.removeClothing(clothing.id)}" value="#{messages['shoppingCart.buttonRemoveItem']}" />
+						</h:column>
+					</h:dataTable>
+				</h:form>
+      			
+      			<!-- FOOTWEAR SECTION -->
+      			<h2><h:outputText value="#{messages['footwear.title']}" /></h2>
+      				<h:form id="footwearForm">
+      				<h:dataTable value="#{cartBean.footwearList}" var="footwear">
+						<h:column>
+							<f:facet name="header"><h:outputText value="#{messages['tableHeader.image']}" /></f:facet>
+								<h:graphicImage value="/img/footwear/#{footwear.image}" width="180" />
+							</h:column>
+						<h:column>
+							<f:facet name="header"><h:outputText value="#{messages['tableHeader.name']}" /></f:facet>
+								#{footwear.name}
+						</h:column>
+						<h:column>
+							<f:facet name="header"><h:outputText value="#{messages['tableHeader.size']}" /></f:facet>
+								#{footwear.size}
+						</h:column>
+						<h:column>
+							<f:facet name="header"><h:outputText value="#{messages['tableHeader.color']}" /></f:facet>
+								#{footwear.color}
+						</h:column>
+						<h:column>
+							<f:facet name="header"><h:outputText value="#{messages['tableHeader.stockInCart']}" /></f:facet>
+								#{footwear.stock}
+						</h:column>
+						<h:column>
+							<f:facet name="header"><h:outputText value="#{messages['shoppingCart.removeItem']}" /></f:facet>
+								<h:commandButton action="#{cartBean.removeFootwear(footwear.id)}" value="#{messages['shoppingCart.buttonRemoveItem']}" />
+						</h:column>
+					</h:dataTable>
+					</h:form>
+
+      			<!-- SOUVENIR SECTION -->
+      			<h2><h:outputText value="#{messages['souvenirs.title']}" /></h2>
+      				<h:form id="souvenirForm">
+      				<h:dataTable value="#{cartBean.souvenirList}" var="souvenir">
+						<h:column>
+							<f:facet name="header"><h:outputText value="#{messages['tableHeader.image']}" /></f:facet>
+								<h:graphicImage value="/img/souvenir/#{souvenir.image}" width="180" />
+						</h:column>
+						<h:column>
+							<f:facet name="header"><h:outputText value="#{messages['tableHeader.name']}" /></f:facet>
+								#{souvenir.name}
+						</h:column>
+						<h:column>
+							<f:facet name="header"><h:outputText value="#{messages['tableHeader.color']}" /></f:facet>
+								#{souvenir.color}
+						</h:column>
+						<h:column>
+							<f:facet name="header"><h:outputText value="#{messages['tableHeader.stockInCart']}" /></f:facet>
+								#{souvenir.stock}
+						</h:column>
+						<h:column>
+							<f:facet name="header"><h:outputText value="#{messages['shoppingCart.removeItem']}" /></f:facet>
+								<h:commandButton action="#{cartBean.removeSouvenir(souvenir.id)}" value="#{messages['shoppingCart.buttonRemoveItem']}" />
+						</h:column>
+					</h:dataTable>
+					</h:form>
+
+				
+				<h3><h:outputText value="#{messages['tableHeader.totalArticles']}" />:<h:outputText value="#{cartBean.totalArticles}" /></h3>
+				<h3><h:outputText value="#{messages['shoppingCart.totalCost']}" />: <h:outputText value="#{cartBean.total}" /></h3>
+				
+				
+				<h:outputLink value="checkOut.jsf" rendered="#{cartBean.total >= 1000}">
+					<h:outputText value="#{messages['shoppingCart.checkOut']}" />
+				</h:outputLink>
+			
+      		</ui:define>
+      	</ui:composition>
+      </h:body>
+</html>

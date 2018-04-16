@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15216761291300" configfile="/SportLife/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" id="pf15239209170881" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf15239209170882" path="/*"/>
+  <nodes xsi:type="pageflow:PFPage" name="admin/logout.xhtml" id="pf15239209170893" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf15239209170882" path="/admin/logout.xhtml"/>
+  <links id="pf15239209170882" target="pf15239209170893" source="pf15239209170881" outcome="logout"/>
+</pageflow:Pageflow>

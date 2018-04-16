@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:f="http://xmlns.jcp.org/jsf/core"
+	    xmlns:p="http://primefaces.org/ui"
+		xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+		xmlns:hf="http://xmlns.jcp.org/jsf/composite/tags"
+		xmlns:cc="http://xmlns.jcp.org/jsf/composite">
+		
+	<cc:interface>
+		<cc:attribute name="backingBean" required="true" />
+		<cc:attribute name="ajaxSubmit" required="true" />
+		<cc:attribute name="columns" required="true" />
+	</cc:interface>
+	
+	<cc:implementation>
+		
+		<h:panelGrid columns="#{cc.attrs.columns}">
+			<p:commandButton rendered="true" value="#{messages['action.save']}" action="#{cc.attrs.backingBean.save}" icon="ui-icon-check" ajax="#{cc.attrs.ajaxSubmit}" />
+			<cc:insertChildren />
+		</h:panelGrid>
+	    
+	</cc:implementation>
+
+</html>

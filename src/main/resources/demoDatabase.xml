@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+	<Team ID="1" VERSION="1" NAME="Borregos"/>
+	<Team ID="2" VERSION="1" NAME="Buhos"/>
+	<Team ID="3" VERSION="1" NAME="Halcones"/>	
+</dataset>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:hf="http://xmlns.jcp.org/jsf/composite/tags"
+      xmlns:hftl="http://hftl.org"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+      
+      <h:body>
+      	<ui:composition template="/templates/layout.xhtml">
+      		<ui:define name="content">
+      		
+      			<!-- TITLE SECTION -->
+      			<h1><h:outputText value="#{messages['signUp.title']}" /></h1>
+      			
+      			<hf:formPanel id="formPanel" label="#{messages['account.page.panel']}" backingBean="#{userBean}" columns="1" >
+					<hf:formField label="#{messages['registry.firstName']}" field="firstName" required="true" />
+					<hf:formField label="#{messages['registry.lastName']}" field="lastName" required="true" />
+					<hf:formField label="#{messages['registry.userName']}" field="username" required="true" />
+					<hf:formField label="#{messages['registry.password']}" field="password" required="true" />
+					<hf:formField label="#{messages['registry.address']}" field="address" required="true" />
+					<hf:formField label="#{messages['registry.secondLastName']}" field="secondLastName" required="true" />
+					<hf:formField label="#{messages['registry.email']}" field="email" required="true" />
+				</hf:formPanel>
+			
+      		</ui:define>
+      	</ui:composition>
+      </h:body>
+</html>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+      
+      <h:body>
+      	<ui:composition template="/templates/layout.xhtml">
+      		<ui:define name="content">
+      		
+      			<!-- TITLE SECTION -->
+      			<h1><h:outputText value="#{messages['borregosPage.title']}" /></h1>
+      			
+      			<!-- CLOTHING SECTION -->
+      			<h2><h:outputText value="Clothing" /></h2>
+      			<h:form id="clothingForm">
+	      			<h:dataTable value="#{searchBean.clothingList}" var="clothing">
+						<h:column>
+							<f:facet name="header"><h:outputText value="#{messages['tableHeader.image']}" /></f:facet>
+								#{clothing.image}
+						</h:column>
+						<h:column>
+							<f:facet name="header"><h:outputText value="#{messages['tableHeader.name']}" /></f:facet>
+								#{clothing.name}
+						</h:column>
+						<h:column>
+							<f:facet name="header"><h:outputText value="#{messages['tableHeader.description']}" /></f:facet>
+								#{clothing.description}
+						</h:column>
+						<h:column>
+							<f:facet name="header"><h:outputText value="#{messages['tableHeader.sport']}" /></f:facet>
+								#{clothing.sport}
+						</h:column>
+						<h:column>
+							<f:facet name="header"><h:outputText value="#{messages['tableHeader.color']}" /></f:facet>
+								#{clothing.color}
+							</h:column>
+						<h:column>
+							<f:facet name="header"><h:outputText value="#{messages['tableHeader.size']}" /></f:facet>
+								#{clothing.size}
+						</h:column>
+						<h:column rendered="#{loginBean.isLoggedIn()}">
+							<f:facet name="header"><h:outputText value="#{messages['tableHeader.price']}" /></f:facet>
+								#{clothing.price}
+						</h:column>
+						<h:column rendered="#{loginBean.isLoggedIn()}">
+							<f:facet name="header"><h:outputText value="#{messages['menu.addToCart']}" /></f:facet>
+								<h:inputText binding="#{input1}" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" >
+									<f:convertNumber integerOnly="true"/>
+								</h:inputText>
+								<h:commandButton action="#{cartBean.addClothing(v.id, input1.value)}" value="#{messages['shoppingCart.addItem']}" />
+						</h:column>
+					</h:dataTable>
+				</h:form>
+				
+				<!-- FOOTWEAR SECTION -->
+      			<h2><h:outputText value="#{messages['footwear.title']}" /></h2>
+      				<h:form id="footwearForm">
+	      				<h:dataTable value="#{searchBean.footwearList}" var="footwear">
+							<h:column>
+								<f:facet name="header"><h:outputText value="#{messages['tableHeader.image']}" /></f:facet>
+									#{footwear.image}
+								</h:column>
+							<h:column>
+								<f:facet name="header"><h:outputText value="#{messages['tableHeader.name']}" /></f:facet>
+									#{footwear.name}
+							</h:column>
+							<h:column>
+								<f:facet name="header"><h:outputText value="#{messages['tableHeader.description']}" /></f:facet>
+									#{footwear.description}
+							</h:column>
+							<h:column>
+								<f:facet name="header"><h:outputText value="#{messages['tableHeader.size']}" /></f:facet>
+									#{footwear.size}
+							</h:column>
+							<h:column>
+								<f:facet name="header"><h:outputText value="#{messages['tableHeader.color']}" /></f:facet>
+									#{footwear.color}
+							</h:column>
+							<h:column rendered="#{loginBean.isLoggedIn()}">
+							<f:facet name="header"><h:outputText value="#{messages['menu.addToCart']}" /></f:facet>
+								<h:inputText binding="#{input2}" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" >
+									<f:convertNumber integerOnly="true"/>
+								</h:inputText>
+								<h:commandButton action="#{cartBean.addFootwear(v.id, input2.value)}" value="#{messages['shoppingCart.addItem']}" />
+						</h:column>
+						</h:dataTable>
+					</h:form>
+			
+      		</ui:define>
+      	</ui:composition>
+      </h:body>
+</html>
